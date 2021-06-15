@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+{% block main %}
+  <div class="b-example-divider"></div>
+  <div class="container col-xl-10 col-xxl-8 px-4 py-5">
+    <div class="row align-items-center g-lg-5 py-5">
+      <div class="col-md-10 mx-auto col-lg-5">
+        <form class="p-4 p-md-5 border rounded-3 bg-light" method="POST">
+          {{ form.hidden_tag() }}
+          <div class="form-floating mb-3">
+            {% if form.email.errors %}
+            {{ form.email(class="form-control is-invalid", placeholder="name@example.com") }}
+              <div class="invalid-feedback">
+                {% for error in form.email.errors %}
+                <span>{{ error }}</span>
+                {% endfor %}
+              </div>
+            {% else %}
+              {{ form.email(class="form-control", placeholder="name@example.com") }}
+             {% endif  %}
+            {{ form.email.label(for="floatingInput") }}
+          </div>
+          <div class="form-group">
+            {{ form.submit(type="submit", class="btn btn-secondary") }}
+          </div>
+          <hr class="my-4">
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock main %}
