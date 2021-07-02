@@ -1,9 +1,13 @@
 import os
 import secrets
 from PIL import Image
-from flask import url_for, current_app
+from flask import url_for, current_app, request
 from flask_mail import Message
 from blog import mail
+from .s3_util import list_files, download_file, upload_file
+
+UPLOAD_FOLDER = "uploads"
+BUCKET = "flask-blog-imgs"
 
 
 def save_picture(form_picture):
@@ -17,6 +21,8 @@ def save_picture(form_picture):
     i.thumbnail(output_size)
     i.save(picture_path)
 
+    upload_file(picture_path, BUCKET)
+
     return picture_fn
 
 
@@ -29,3 +35,4 @@ def send_reset_email(user):
 If you did not make this request then simply ignore this email and no changes will be made.
 '''
     mail.send(msg)
+
