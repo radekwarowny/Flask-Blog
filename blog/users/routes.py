@@ -16,7 +16,7 @@ BUCKET = "flask-blog-imgs"
 @users.route("/register", methods=['GET', 'POST'])
 def register():
     if current_user.is_authenticated:
-        return redirect(url_for('home'))
+        return redirect(url_for('main.home'))
     form = RegistrationForm()
     if form.validate_on_submit():
         hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
@@ -68,13 +68,13 @@ def account():
         form.email.data = current_user.email
         # image upload to s3
         # try:
-        #     image_file = 'https://flask-blog-imgs.s3.eu-west-2.amazonaws.com//home/radek/PycharmProjects/pythonProject/Blog/blog/static/profile_pics/' + current_user.image_file
+        image_file = 'https://flask-blog-imgs.s3.eu-west-2.amazonaws.com//home/radek/PycharmProjects/pythonProject/Blog/blog/static/profile_pics/' + current_user.image_file
         #     return render_template('account.html', title='Account', image_file=image_file, form=form)
         # except Exception as e:
         #     print(e)
         #     image_file = url_for('static', filename='profile_pics/' + current_user.image_file)
         #     return render_template('account.html', title='Account', image_file=image_file, form=form)
-        image_file = url_for('static', filename='profile_pics/' + current_user.image_file)
+        #image_file = url_for('static', filename='profile_pics/' + current_user.image_file)
         return render_template('account.html', title='Account', image_file=image_file, form=form)
 
 

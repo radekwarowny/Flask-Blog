@@ -39,7 +39,7 @@
           </div>
         <div class="mb-3">
             {{ form.picture.label(for="formFileSm", class="form-label") }}
-            {{ form.picture(class="form-control, form-control-sm", id="formFileSm", type="file") }}
+            {{ form.picture(class="form-control, form-control-sm", id="formFileSm") }}
             {% if form.picture.errors %}
                 {% for error in form.picture.errors %}
                     <span class="text-danger">{{ error }}</span></br>
