@@ -2,6 +2,7 @@ import os
 
 
 class Config:
+    S3 = os.environ.get('S3')
     SECRET_KEY = os.environ.get('SECRET_KEY')
     # SQLAlchemy 1.4x compatibility issues
     SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL').replace("://", "ql://", 1)
